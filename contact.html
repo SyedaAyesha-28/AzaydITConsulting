@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - IT Consulting Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="careers.html">Careers</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="contact">
+            <h1>Contact Us</h1><br><br>
+            <form id="contactForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone"><br>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea><br><br><br>
+
+                <button type="submit">Send</button><br><br><br><br>
+            </form>
+        </section>
+<hr>
+        <section id="company-info">
+            <h2>Company Information</h2>
+            <p><strong>Email:</strong> info@itconsulting.com</p>
+            <p><strong>Phone:</strong> +1234567890</p>
+            <p><strong>Address:</strong> 123 Main Street, City, Country</p>
+            <div id="map">
+                <!-- Embed your map here -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3887.9854631190974!2d77.61817382936096!3d12.972781475536319!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae178733bc3b23%3A0x5d4ec18559b11d62!2sVarcons%20Tech%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1717683871569!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+        <br>
+        <section id="social-media">
+            <h2>Social Media Links</h2>
+            <div class="social-icons">
+                <a href="#" class="fab fa-facebook"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+                <a href="#" class="fab fa-instagram"></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 IT Consulting Services. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    message: formData.get('message')
+                })
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Success:', data);
+                alert('Form submitted successfully!');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>
